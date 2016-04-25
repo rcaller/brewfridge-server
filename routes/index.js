@@ -12,7 +12,17 @@ router.get('/', function(req, res, next) {
 
       connection.query('SELECT beer, fridge, TIMESTAMPDIFF(SECOND, logtime, now()) as logtimediff FROM templog ORDER BY logtime DESC LIMIT 1', [], function(err, results) {
         if (err) return next(err);
-        res.render('index', {title: 'Brew Fridge', beer: results[0].beer, fridge: results[0].fridge, lastReportTime: results[0].logtimediff });
+        if (results.length == 0) {
+          res.render('index', {title: 'Brew Fridge', beer: 'n/a', fridge: 'n/a', lastReportTime: 'n/a' });
+        }
+        else {
+          res.render('index', {
+            title: 'Brew Fridge',
+            beer: results[0].beer,
+            fridge: results[0].fridge,
+            lastReportTime: results[0].logtimediff
+          });
+        }
       });
   });
 });
@@ -24,7 +34,13 @@ router.get('/current', function(req, res, next) {
     if (err) return next(err);
      connection.query('SELECT beer, fridge, TIMESTAMPDIFF(SECOND, logtime, now()) as logtimediff FROM templog ORDER BY logtime DESC LIMIT 1', [], function(err, results) {
         if (err) return next(err);
-        res.json({ beer: results[0].beer, fridge: results[0].fridge, lastReportTime: results[0].logtimediff });
+       if (results.length == 0) {
+         res.json({ beer: 'n/a', fridge: 'n/a', lastReportTime: 'n/a' });
+       }
+       else {
+         res.json({beer: results[0].beer, fridge: results[0].fridge, lastReportTime: results[0].logtimediff});
+       }
+           
     });
   });
 });
