@@ -3,7 +3,6 @@ html {
 }
 body {
   height: 100%;
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -11,7 +10,6 @@ h1 {
   font-family: Arial;
   font-size: 35px;
   display: block;
-  width: 80%;
   text-align: center;
 
 }
@@ -20,92 +18,61 @@ a {
   color: #00B7FF;
 }
 
+.full-height {
+  height: 100%;
+}
+
+#chart_holder {
+  height: 100%;
+}
+
 #curve_chart {
   border-style: double;
   border-color: #666666;
   border-width: 3px;
   padding: 10px;
   margin: 10px;
+  height: 75%;
+  width: 95%;
+}
 
+.report-block {
+  border-style: double;
+  border-color: #666666;
+  border-width: 3px;
+  font-family: Arial;
+  font-size: 20px;
+  text-align: center;
 }
 
 #beerTemp {
-  border-style: double;
-  border-color: #666666;
-  border-width: 3px;
-  float: left;
-  font-family: Arial;
-  font-size: 20px;
-  padding: 5px;
-  margin: 5px;
   background-color: #dc3912;
-  text-align: center;
 }
 
 #fridgeTemp {
-  border-style: double;
-  border-color: #666666;
-  border-width: 3px;
-  float: left;
-  font-family: Arial;
-  font-size: 20px;
-  padding: 5px;
-  margin: 5px;
   background-color: #3366cc;
-  text-align: center;
+}
+
+#internalTemp {
+  background-color: #ff9900;
+}
+
+#gravity {
+  background-color: #990099;
 }
 #lastReport {
-  border-style: double;
-  border-color: #666666;
-  border-width: 3px;
-  float: left;
-  font-family: Arial;
-  font-size: 20px;
-  padding: 5px;
-  margin: 5px;
-  text-align: center;
 }
 
 
 
 #dataline {
-  width: 80%;
   height: 80px;
   padding: 10px;
   margin: 10px;
 }
 
 #profile {
-  float: right;
-  margin-top: 25px;
 }
 
-
-.btn {
-  background: #d98134;
-  background-image: -webkit-linear-gradient(top, #d98134, #b82b2b);
-  background-image: -moz-linear-gradient(top, #d98134, #b82b2b);
-  background-image: -ms-linear-gradient(top, #d98134, #b82b2b);
-  background-image: -o-linear-gradient(top, #d98134, #b82b2b);
-  background-image: linear-gradient(to bottom, #d98134, #b82b2b);
-  -webkit-border-radius: 10;
-  -moz-border-radius: 10;
-  border-radius: 10px;
-  font-family: Arial;
-  color: #ffffff;
-  font-size: 20px;
-  padding: 15px 20px 16px 20px;
-  text-decoration: none;
-}
-
-.btn:hover {
-  background: #fc693c;
-  background-image: -webkit-linear-gradient(top, #fc693c, #d93434);
-  background-image: -moz-linear-gradient(top, #fc693c, #d93434);
-  background-image: -ms-linear-gradient(top, #fc693c, #d93434);
-  background-image: -o-linear-gradient(top, #fc693c, #d93434);
-  background-image: linear-gradient(to bottom, #fc693c, #d93434);
-  text-decoration: none;
-}
 
 

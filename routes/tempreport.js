@@ -1,5 +1,6 @@
+require('rootpath')();
 var express = require('express');
-var reportTemp = require('reportTemp');
+var reportTemp = require('lib/reportTemp');
 var router = express.Router();
 
 

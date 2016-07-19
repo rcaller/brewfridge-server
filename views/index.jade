@@ -3,12 +3,15 @@ extends layout
 block content
   script(type='text/javascript', src='/brewfridge/javascripts/chart.js')
   h1= title
-  div#dataline
-    div#beerTemp Beer Temp<br/>#{beer} &deg;C
-    div#fridgeTemp Fridge Temp<br/>#{fridge} &deg;C
-    div#lastReport Last Report<br/> #{lastReportTime} S
-    div#profile 
-      a(href="/brewfridge/profile", class='btn') Set Profile
-  #curve_chart(style="width: 80%; height: 60%")
+  div#dataline.row
+    div#beerTemp.col-md-2.col-xs-6.report-block Beer Temp<br/>#{beer} &deg;C
+    div#fridgeTemp.col-md-2.col-xs-6.report-block Fridge Temp<br/>#{fridge} &deg;C
+    div#internalTemp.col-md-2.col-xs-6.report-block Internal Temp<br/>#{internal} &deg;C
+    div#gravity.col-md-2.col-xs-6.report-block Gravity<br/>#{gravity} 
+    div#lastReport.col-md-2.col-xs-6.report-block Last Report<br/> #{lastReportTime} S
+    div#profile.col-md-2.col-xs-6 
+      a(href="/brewfridge/profile", class='btn btn-primary btn-lg active') Set Profile
+  div.row#chart_holder
+    #curve_chart.col-xs-12
 
 

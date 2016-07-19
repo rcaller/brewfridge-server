@@ -1,8 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var multer  = require('multer');
-var xpath = require('xpath');
-var dom = require('xmldom').DOMParser;
 fs = require('fs');
 
 /* GET home page. */
@@ -32,13 +30,13 @@ router.get('/', function(req, res, next) {
 router.get('/current', function(req, res, next) {
   req.getConnection(function(err, connection) {
     if (err) return next(err);
-     connection.query('SELECT beer, fridge, TIMESTAMPDIFF(SECOND, logtime, now()) as logtimediff FROM templog ORDER BY logtime DESC LIMIT 1', [], function(err, results) {
+     connection.query('SELECT beer, fridge, internal, gravity, TIMESTAMPDIFF(SECOND, logtime, now()) as logtimediff FROM templog ORDER BY logtime DESC LIMIT 1', [], function(err, results) {
         if (err) return next(err);
        if (results.length == 0) {
-         res.json({ beer: 'n/a', fridge: 'n/a', lastReportTime: 'n/a' });
+         res.json({ beer: 'n/a', fridge: 'n/a', internal: 'n/a', gravity: 'n/a', lastReportTime: 'n/a' });
        }
        else {
-         res.json({beer: results[0].beer, fridge: results[0].fridge, lastReportTime: results[0].logtimediff});
+         res.json({beer: results[0].beer, fridge: results[0].fridge, internal: results[0].internal, gravity: results[0].gravity, lastReportTime: results[0].logtimediff});
        }
            
     });
