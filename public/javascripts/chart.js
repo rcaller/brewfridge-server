@@ -16,6 +16,7 @@ function drawChart() {
       parsedData.push([new Date(d[0]), d[1], d[2], d[3], d[4], d[5]]);
 
     });
+    console.log(parsedData);
     var data = google.visualization.arrayToDataTable(parsedData);
 
     var options = {

@@ -57,12 +57,9 @@ router.get('/update', function(req, res, next) {
     console.log(data);
     connection.query('DELETE from fermSteps', [], function(err, rows, fields) {
       if (err) return next(err);
-      connection.query('INSERT INTO fermSteps (daysFromStart, temp) values ?', [data], function(err, rows, fields) {});
+      connection.query('INSERT INTO fermSteps (daysFromStart, temp) values ?', [data], function(err, rows, fields) {res.redirect('/brewfridge');});
     });
   });
-  console.log(req.query.time);
-  console.log(req.query.starttemp);  
-  next();
 });
 
 router.get('/update', function(req, res, next) {

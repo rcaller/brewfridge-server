@@ -13,12 +13,25 @@ router.get('/', function(req, res, next) {
         results.forEach(function(r) {
           outputData.push([r.time, r['fridge'], r['beer'], r['internal'], null, r['gravity']]);
         });
-        connection.query('select (SELECT min(logtime) FROM templog) + INTERVAL daysFromStart DAY AS stepTime, temp FROM fermSteps', [], function(err, results) {
+        connection.query('select (SELECT IFNULL(min(logtime), now()) FROM templog) + INTERVAL daysFromStart DAY AS stepTime, temp FROM fermSteps', [], function(err, results) {
           results.forEach(function(r) {
             outputData.push([r.stepTime, null, null, null, r.temp, null]);
           });
           res.json(outputData);
         });
+      });
+  });
+});
+
+router.get('/profile', function(req, res, next) {
+  req.getConnection(function(err, connection) {
+      if (err) return next(err);
+      outputData = [['Time', 'Target Temperature']];
+      connection.query('select daysFromStart AS stepTime, temp FROM fermSteps', [], function(err, results) {
+        results.forEach(function(r) {
+          outputData.push([r.stepTime, r.temp]);
+        });
+        res.json(outputData);
       });
   });
 });

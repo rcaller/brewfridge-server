@@ -1,17 +1,16 @@
 extends layout
 
 block content
+  script(type='text/javascript', src='/brewfridge/javascripts/profile.js')
   h2 Fermentation Profile
   div(id='newrow') New Row
-  form(method='get', action='update')
-    table(id='temptable')
-      tr
-        th Time From Start (days)
-        th Temperature (&deg;C)
-      tr
-        td
-          input(type='text', name='time')
-        td
-          input(type='text', name='starttemp')
-    input(type='submit')
-  script(type='text/javascript', src='/brewfridge/javascripts/temptable.js')
+  div.row
+    div.col-md-4  
+      form(method='get', action='update', id='profileForm')
+        table(id='temptable')
+          tr
+            th Time From Start (days)
+            th Temperature (&deg;C)
+        input(type='submit')
+    div.col-md-8#chart_holder
+      #curve_chart
