@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
   req.getConnection(function(err, connection) {
       if (err) return next(err);
 
-      connection.query('SELECT beer, fridge, TIMESTAMPDIFF(SECOND, logtime, now()) as logtimediff FROM templog ORDER BY logtime DESC LIMIT 1', [], function(err, results) {
+      connection.query('SELECT beer, fridge, TIMESTAMPDIFF(SECOND, eventtime, now()) as logtimediff FROM measurements ORDER BY eventtime DESC LIMIT 1', [], function(err, results) {
         if (err) return next(err);
         if (results.length == 0) {
           res.render('index', {title: 'Brew Fridge', beer: 'n/a', fridge: 'n/a', lastReportTime: 'n/a' });
@@ -30,7 +30,7 @@ router.get('/', function(req, res, next) {
 router.get('/current', function(req, res, next) {
   req.getConnection(function(err, connection) {
     if (err) return next(err);
-     connection.query('SELECT beer, fridge, internal, gravity, TIMESTAMPDIFF(SECOND, logtime, now()) as logtimediff FROM templog ORDER BY logtime DESC LIMIT 1', [], function(err, results) {
+     connection.query('SELECT beer, fridge, internal, gravity, TIMESTAMPDIFF(SECOND, eventtime, now()) as logtimediff FROM measurements ORDER BY eventtime DESC LIMIT 1', [], function(err, results) {
         if (err) return next(err);
        if (results.length == 0) {
          res.json({ beer: 'n/a', fridge: 'n/a', internal: 'n/a', gravity: 'n/a', lastReportTime: 'n/a' });
