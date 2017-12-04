@@ -3,6 +3,8 @@ google.setOnLoadCallback(createChart);
 var chart;
 var gravityChart;
 
+Notification.requestPermission();
+
 function createChart() {
   chart = new google.charts.Line(document.getElementById('curve_chart'));
 //  gravityChart = new google.charts.Line(document.getElementById('gravity_chart'));
@@ -75,6 +77,9 @@ function update() {
     $( "#internalTemp" ).html("Internal Temp<br/>" + result.internal + " &deg;C");
     $( "#gravity" ).html("Gravity<br/>" + result.gravity);
     $( "#lastReport" ).html("Last Report<br/>" + result.lastReportTime + " S");
+    if (result.lastReportTime > 600) {
+      var notification = new Notification("Brew Fridge Update Alert", {});
+    }
   });    
   setTimeout(update, 10000);
 }

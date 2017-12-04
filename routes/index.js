@@ -10,6 +10,7 @@ var crypto = require('crypto');
 passport.use(new Strategy({passReqToCallback: true},
   function(req, username, password, done) {
     hash = crypto.createHmac('sha512', "gr4asda").update(password).digest('hex');
+    console.log(hash);
     req.getConnection(function(err, connection) {
       if (err) return done(err);
       connection.query('SELECT id FROM users WHERE username=? AND password=?', [username, hash], function(err, results) {
